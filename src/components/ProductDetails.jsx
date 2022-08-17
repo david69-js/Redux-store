@@ -13,8 +13,8 @@ const ProductDetails = () => {
   let product = useSelector((state) => state.product);
   const { image, title, price, category, description, id } = product;
   const dispatch = useDispatch();
-  const AddToTheCart = (id) =>{
-    dispatch(AddToCart(id))
+  const AddToTheCart = (data) =>{
+    dispatch(AddToCart(data))
   }
   
   const fetchProductDetail = async (id) => {
@@ -32,33 +32,29 @@ const ProductDetails = () => {
     };
   }, [productId]);
   return (
-    <div className="ui grid container">
+    <div className="pdp-container ui grid container pt-28 px-4 md:px-auto pb-10 ">
       {Object.keys(product).length === 0 ? (
         <div>...Loading</div>
       ) : (
-        <div className="ui placeholder segment">
-          <div className="ui two column stackable center aligned grid">
-            <div className="middle aligned row">
-              <div className="column lp">
-                <img className="ui fluid image" alt={title} src={image} />
+            <div className="pdp-content md:flex">
+              <div className="md:w-2/4 column1 p-5">
+                <img className="pdp-image ui fluid image" alt={title} src={image} />
               </div>
-              <div className="column rp">
-                <h1>{title}</h1>
-                <h2>
+              <div className="pdp-head md:w-2/4 column2 p-5">
+                <h1 className="pdp-title">{title}</h1>
+                <h2 className="pdp-price">
                   <span className="ui teal tag label">${price}</span>
                 </h2>
-                <h3 className="ui brown block header">{category}</h3>
-                <p>{description}</p>
-                <button onClick={() => AddToTheCart(id)} className="ui vertical animated button" tabIndex="0">
+                <h3 className="pdp-category">Category: {category}</h3>
+                <p className="pdp-description">{description}</p>
+                <button className="pdp-button" onClick={() => AddToTheCart({id, title, price, image})} tabIndex="0">
                   <div className="hidden content">
                     <i className="shop icon"></i>
                   </div>
-                  <div className="visible content">Add to Cart</div>
+                  <div>Add to Cart</div>
                 </button>
               </div>
             </div>
-          </div>
-        </div>
       )}
     </div>
   );

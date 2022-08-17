@@ -20,7 +20,7 @@ const ProductPage = () => {
   });
 
   return (
-    <div className="container flex flex-wrap justify-center gap-3 pt-20 mx-auto">
+    <div className="container flex flex-wrap justify-center gap-7 pt-24 pb-10 mx-auto">
       <ProductComponent />
     </div>
   );
